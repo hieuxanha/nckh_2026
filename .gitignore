@@ -1,0 +1,58 @@
+# Ignore everything in root
+*
+
+# Allow gitignore
+!.gitignore
+
+# Allow backend and frontend
+!be/
+!be/**
+!fe/
+!fe/**
+
+# Ignore IDE
+.idea/
+.vscode/
+be/.idea/
+fe/.idea/
+
+# Ignore Python virtual env
+.venv/
+venv/
+be/.venv/
+be/venv/
+fe/.venv/
+fe/venv/
+
+# Ignore Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Ignore env files
+.env
+be/.env
+fe/.env
+
+# Ignore Node/Angular
+node_modules/
+fe/node_modules/
+be/node_modules/
+dist/
+fe/dist/
+.angular/
+fe/.angular/
+.cache/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore OS files
+.DS_Store
+__MACOSX/
+
+# Ignore zip/rar
+*.zip
+*.rar
+*.7z
