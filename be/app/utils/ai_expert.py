@@ -1,15 +1,18 @@
 import google.generativeai as genai
 import os
 
-# Cấu hình API Key (Hiếu lấy key tại: https://aistudio.google.com/app/apikey)
-genai.configure(api_key="YAIzaSyAVvNXByWrApsN0ZDYagpap18YhOQ1r61k")
-
-
 def generate_medical_report(patient_name, result, confidence):
     """
-    Sử dụng Gemini Pro để tạo nhận định chuyên môn dựa trên kết quả từ DenseNet121.
+    Sử dụng Google Gemini để tạo nhận định chuyên môn dựa trên kết quả từ DenseNet121.
     """
-    model = genai.GenerativeModel('gemini-1.5-flash')  # Hoặc 'gemini-pro'
+    api_key = os.environ.get("GEMINI_API_KEY")
+    
+    if not api_key:
+        return f"Ghi chú: Kết quả phát hiện {result}. (Chưa cấu hình GEMINI_API_KEY trong .env)"
+
+    # Cấu hình Gemini
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     # Thiết lập ngữ cảnh (Prompt Engineering)
     prompt = f"""
@@ -30,5 +33,5 @@ def generate_medical_report(patient_name, result, confidence):
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
+        print(f"Lỗi gọi Gemini API: {e}")
         return f"Ghi chú: Kết quả phát hiện {result}. Đề nghị bác sĩ hội chẩn thêm."
-        

@@ -19,11 +19,11 @@ def create_app():
          supports_credentials=True)
 
     # 2. CẤU HÌNH DATABASE (MySQL Port 3307)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost:3307/nckh2026'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'mysql+pymysql://root:123456@localhost:3307/nckh2026')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # 3. CẤU HÌNH JWT (Vé thông hành)
-    app.config['JWT_SECRET_KEY'] = 'hieu_cong_nghe_thong_tin_unre_2026_secret_key_pro'
+    app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'hieu_cong_nghe_thong_tin_unre_2026_secret_key_pro')
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
     # 4. KHỞI TẠO EXTENSIONS

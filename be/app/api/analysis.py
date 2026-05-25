@@ -272,7 +272,7 @@ def predict_xray():
         result_text = random.choice(['Viêm phổi', 'Bình thường'])
         confidence = round(random.uniform(92.0, 99.5), 1)
 
-    # Gọi OpenAI / Gemini API sinh báo cáo y khoa bệnh án
+    # Gọi Gemini API sinh báo cáo y khoa bệnh án
     try:
         llm_explanation = generate_medical_report(filepath, result_text, f"{confidence}%")
     except Exception:
