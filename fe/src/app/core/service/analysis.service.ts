@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
@@ -6,7 +7,7 @@ import { Observable, Observer } from 'rxjs';
   providedIn: 'root',
 })
 export class AnalysisService {
-  private apiUrl = 'http://localhost:5000/api/analysis';
+  private apiUrl = `${environment.apiUrl}/api/analysis`;
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +38,7 @@ export class AnalysisService {
 
   // Trong AnalysisService
   deleteAnalysis(id: any) {
-    // Đường dẫn giờ sẽ là: http://localhost:5000/api/analysis/delete/PAT-xxx
+    // Đường dẫn giờ sẽ là: ${environment.apiUrl}/api/analysis/delete/PAT-xxx
     return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -30,7 +31,7 @@ export interface ChartResponse {
   providedIn: 'root',
 })
 export class StatisticsService {
-  private readonly API_URL = 'http://localhost:5000/api/statistics';
+  private readonly API_URL = `${environment.apiUrl}/api/statistics`;
 
   constructor(private http: HttpClient) {}
 

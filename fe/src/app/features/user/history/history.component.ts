@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AnalysisService } from '../../../core/service/analysis.service';
@@ -430,7 +431,7 @@ import { AnalysisService } from '../../../core/service/analysis.service';
 export class HistoryComponent implements OnInit {
   historyData: any[] = [];
   allData: any[] = []; // Lưu lại bản gốc để search không cần gọi API liên tục
-  readonly API_URL = 'http://localhost:5000/';
+  readonly API_URL = `${environment.apiUrl}/`;
 
   stats = { total: 0, pneumonia: 0, normal: 0 };
   selectedRecord: any = null;

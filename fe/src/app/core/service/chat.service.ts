@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChatService {
-  private apiUrl = 'http://localhost:5000/api/chat';
+  private apiUrl = `${environment.apiUrl}/api/chat`;
 
   constructor(private http: HttpClient) {}
 

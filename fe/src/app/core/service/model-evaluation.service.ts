@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -35,7 +36,7 @@ export interface EvaluationResult {
 })
 export class ModelEvaluationService {
   // Đường dẫn đến Flask API (Hiếu nhớ đăng ký Blueprint 'model' trong Flask nhé)
-  private readonly API_URL = 'http://localhost:5000/api/models';
+  private readonly API_URL = `${environment.apiUrl}/api/models`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnalysisService } from '../../../core/service/analysis.service';
@@ -512,7 +513,7 @@ import { AnalysisService } from '../../../core/service/analysis.service';
 })
 export class AnalysisComponent {
   // Đường dẫn trỏ chuẩn xác đến tiền tố Router phân vùng API
-  readonly API_URL = 'http://localhost:5000/api/analysis/';
+  readonly API_URL = `${environment.apiUrl}/api/analysis/`;
 
   patientId: string = '';
   patientName: string = '';

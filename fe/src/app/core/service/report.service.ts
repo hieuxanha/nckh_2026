@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,7 +13,7 @@ export interface ReportFilter {
   providedIn: 'root',
 })
 export class ReportService {
-  private readonly API_URL = 'http://localhost:5000/api/report';
+  private readonly API_URL = `${environment.apiUrl}/api/report`;
 
   constructor(private http: HttpClient) {}
 

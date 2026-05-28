@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -22,7 +23,7 @@ export interface UserResponse {
 })
 export class UserService {
   // Đường dẫn đến Blueprint auth trong Flask của Hiếu
-  private readonly API_URL = 'http://localhost:5000/api/auth';
+  private readonly API_URL = `${environment.apiUrl}/api/auth`;
 
   constructor(private http: HttpClient) {}
 

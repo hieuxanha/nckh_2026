@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   // Thay localhost bằng IP máy tính nếu chạy trên điện thoại thật
-  private apiUrl = 'http://localhost:5000/api/auth';
+  private apiUrl = `${environment.apiUrl}/api/auth`;
 
   constructor(private http: HttpClient) { }
 

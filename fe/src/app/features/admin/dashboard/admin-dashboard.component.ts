@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { AnalysisService } from '../../../core/service/analysis.service';
 import { StatisticsService } from '../../../core/service/statistics.service';
@@ -395,7 +396,7 @@ export class AdminDashboardComponent implements OnInit {
   chartLabels: string[] = [];
 
   recentActivities: any[] = [];
-  readonly API_URL = 'http://localhost:5000/';
+  readonly API_URL = `${environment.apiUrl}/`;
 
   constructor(
     private analysisService: AnalysisService,
