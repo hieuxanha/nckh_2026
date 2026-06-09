@@ -13,7 +13,7 @@ import { AnalysisService } from '../../../core/service/analysis.service';
       class="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 dark:bg-[#0a0f16] font-['Manrope'] text-slate-800 dark:text-white transition-colors duration-300"
     >
       <header
-        class="px-8 py-6 border-b border-slate-200 dark:border-gray-800 bg-white/80 dark:bg-[#0d121b]/80 backdrop-blur-md flex justify-between items-center transition-colors duration-300"
+        class="px-4 md:px-8 py-4 md:py-6 border-b border-slate-200 dark:border-gray-800 bg-white/80 dark:bg-[#0d121b]/80 backdrop-blur-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors duration-300"
       >
         <div>
           <h1
@@ -42,7 +42,7 @@ import { AnalysisService } from '../../../core/service/analysis.service';
         </button>
       </header>
 
-      <div class="flex-1 overflow-y-auto p-8 custom-scroll">
+      <div class="flex-1 overflow-y-auto p-4 md:p-8 custom-scroll">
         <div class="max-w-7xl mx-auto">
           <div
             class="bg-white dark:bg-[#131924] rounded-3xl border border-slate-200 dark:border-gray-800/50 overflow-hidden shadow-lg dark:shadow-2xl transition-colors duration-300"
@@ -59,7 +59,8 @@ import { AnalysisService } from '../../../core/service/analysis.service';
                 >* Bấm vào biểu tượng lịch sử để xem các lần khám cũ</span
               >
             </div>
-            <table class="w-full text-left">
+            <div class="overflow-x-auto w-full">
+              <table class="w-full text-left min-w-[800px]">
               <thead>
                 <tr
                   class="text-slate-500 dark:text-gray-600 text-[10px] font-black uppercase tracking-[0.25em] border-b border-slate-100 dark:border-gray-800/50"
@@ -135,11 +136,12 @@ import { AnalysisService } from '../../../core/service/analysis.service';
                   </td>
                 </tr>
               </tbody>
-            </table>
+              </table>
+            </div>
             <!-- Phân trang -->
             <div
               *ngIf="totalPages > 1"
-              class="border-t border-slate-200 dark:border-gray-800/50 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-[#131924]"
+              class="border-t border-slate-200 dark:border-gray-800/50 p-4 md:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-[#131924]"
             >
               <span
                 class="text-sm text-slate-500 dark:text-gray-500 font-medium"
@@ -191,7 +193,7 @@ import { AnalysisService } from '../../../core/service/analysis.service';
           class="relative bg-white dark:bg-[#0d121b] border border-slate-200 dark:border-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-colors"
         >
           <div
-            class="px-8 py-6 border-b border-slate-100 dark:border-gray-800 flex justify-between items-center bg-slate-50 dark:bg-[#131924]"
+            class="px-4 md:px-8 py-4 md:py-6 border-b border-slate-100 dark:border-gray-800 flex justify-between items-center bg-slate-50 dark:bg-[#131924]"
           >
             <div>
               <h3
@@ -211,11 +213,11 @@ import { AnalysisService } from '../../../core/service/analysis.service';
             </button>
           </div>
 
-          <div class="flex-1 overflow-y-auto p-6 custom-scroll">
+          <div class="flex-1 overflow-y-auto p-4 md:p-6 custom-scroll">
             <div class="space-y-4">
               <div
                 *ngFor="let h of selectedHistory"
-                class="bg-slate-50 dark:bg-[#1a222c] border border-slate-200 dark:border-gray-800 rounded-2xl p-4 flex items-center gap-5 hover:border-slate-300 dark:hover:border-gray-600 transition-all"
+                class="bg-slate-50 dark:bg-[#1a222c] border border-slate-200 dark:border-gray-800 rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-5 hover:border-slate-300 dark:hover:border-gray-600 transition-all"
               >
                 <img
                   [src]="h.thumbnail"
