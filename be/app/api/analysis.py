@@ -105,7 +105,7 @@ def auto_correct_orientation(img_gray):
         # Phần bụng/cơ hoành/tim ở dưới thường có mật độ mô sáng/dày hơn vùng phế trường khí ở trên.
         # Nếu nửa dưới lại tối hơn nửa trên một cách bất thường -> Ảnh đang bị đảo ngược 180 độ.
         if np.mean(top_half) > np.mean(bottom_half) + 15:
-            return cv2.rotate(img_corrected, cv2.ROTATE_180)
+            return cv2.rotate(img_gray, cv2.ROTATE_180)
 
     return img_gray
 
@@ -262,7 +262,7 @@ def predict_xray():
 
             # Sử dụng lại ma trận ảnh gốc đã nắn thẳng để chồng lớp cầu vồng chính xác từng mm
             img_color_corrected = cv2.cvtColor(img_corrected, cv2.COLOR_GRAY2BGR)
-            generate_gradcam(img_color_corrected, heatmap_path, model_ai)
+            # generate_gradcam(img_color_corrected, heatmap_path, model_ai)
 
         except Exception as e:
             return jsonify({"msg": f"Lỗi tính toán mô hình AI: {str(e)}"}), 500
@@ -274,7 +274,8 @@ def predict_xray():
 
     # Gọi Gemini API sinh báo cáo y khoa bệnh án
     try:
-        llm_explanation = generate_medical_report(filepath, result_text, f"{confidence}%")
+        # llm_explanation = generate_medical_report(filepath, result_text, f"{confidence}%")
+        llm_explanation = f"Hệ thống đã phân tích ảnh và cho kết quả: {result_text}, độ tin cậy {confidence}%."
     except Exception:
         llm_explanation = f"Hệ thống phân tích hình ảnh và phát hiện cấu trúc mô phổi thuộc trạng thái: {result_text}."
 

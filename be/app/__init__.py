@@ -14,9 +14,8 @@ def create_app():
 
     # 1. CẤU HÌNH CORS (Duy nhất 1 lần, đầy đủ Header)
     CORS(app, resources={r"/api/*": {"origins": "*"}},
-         allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-         expose_headers=["Authorization"],
-         supports_credentials=True)
+         allow_headers=["Content-Type", "Authorization"],
+         expose_headers=["Authorization"])
 
     # 2. CẤU HÌNH DATABASE (MySQL Port 3307)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'mysql+pymysql://root:123456@localhost:3307/nckh2026')
