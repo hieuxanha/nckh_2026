@@ -10,8 +10,13 @@ import { Router, RouterModule } from '@angular/router';
     <div
       class="flex h-screen w-full overflow-hidden bg-white dark:bg-[#101922] transition-colors duration-200"
     >
+      <!-- Backdrop for mobile -->
+      <div *ngIf="isMobileMenuOpen" (click)="isMobileMenuOpen = false" class="fixed inset-0 bg-black/50 z-30 md:hidden"></div>
+
       <aside
-        class="flex w-72 flex-col border-r border-[#e5e7eb] dark:border-[#22282f] bg-white dark:bg-[#111418] transition-colors h-full"
+        [class.translate-x-0]="isMobileMenuOpen"
+        [class.-translate-x-full]="!isMobileMenuOpen"
+        class="absolute md:relative z-40 flex w-72 flex-col border-r border-[#e5e7eb] dark:border-[#22282f] bg-white dark:bg-[#111418] transition-transform duration-300 h-full md:translate-x-0"
       >
         <div class="p-6 flex items-center gap-3">
           <div
@@ -36,6 +41,7 @@ import { Router, RouterModule } from '@angular/router';
         <nav class="flex-1 px-4 py-4 flex flex-col gap-2 overflow-y-auto">
           <a
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#637588] dark:text-[#9dabb9] hover:bg-[#f3f4f6] dark:hover:bg-[#1A222C] transition-colors group"
+            (click)="isMobileMenuOpen = false"
             routerLink="/admin/dashboard"
             routerLinkActive="bg-[#137fec] !text-white shadow-lg shadow-[#137fec]/20"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -46,6 +52,7 @@ import { Router, RouterModule } from '@angular/router';
 
           <a
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#637588] dark:text-[#9dabb9] hover:bg-[#f3f4f6] dark:hover:bg-[#1A222C] transition-colors group"
+            (click)="isMobileMenuOpen = false"
             routerLink="/admin/users"
             routerLinkActive="bg-[#137fec] !text-white shadow-lg shadow-[#137fec]/20"
           >
@@ -55,6 +62,7 @@ import { Router, RouterModule } from '@angular/router';
 
           <a
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#637588] dark:text-[#9dabb9] hover:bg-[#f3f4f6] dark:hover:bg-[#1A222C] transition-colors group"
+            (click)="isMobileMenuOpen = false"
             routerLink="/admin/models"
             routerLinkActive="bg-[#137fec] !text-white shadow-lg shadow-[#137fec]/20"
           >
@@ -66,6 +74,7 @@ import { Router, RouterModule } from '@angular/router';
 
           <a
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#637588] dark:text-[#9dabb9] hover:bg-[#f3f4f6] dark:hover:bg-[#1A222C] transition-colors group"
+            (click)="isMobileMenuOpen = false"
             routerLink="/admin/reports"
             routerLinkActive="bg-[#137fec] !text-white shadow-lg shadow-[#137fec]/20"
           >
@@ -113,8 +122,21 @@ import { Router, RouterModule } from '@angular/router';
         </div>
       </aside>
 
-      <main class="flex-1 overflow-y-auto bg-[#f6f7f8] dark:bg-[#101922]">
-        <div class="min-h-full">
+      <main class="flex-1 flex flex-col min-w-0 overflow-hidden relative bg-[#f6f7f8] dark:bg-[#101922]">
+        <!-- Mobile Header -->
+        <header class="md:hidden flex items-center justify-between p-4 bg-white dark:bg-[#111418] border-b border-[#e5e7eb] dark:border-[#22282f] z-20 sticky top-0">
+          <div class="flex items-center gap-3">
+            <div class="bg-[#137fec]/20 p-2 rounded-lg text-[#137fec]">
+              <span class="material-symbols-outlined text-2xl">radiology</span>
+            </div>
+            <h1 class="text-[#111418] dark:text-white text-lg font-bold leading-tight">DeepX Ray</h1>
+          </div>
+          <button (click)="isMobileMenuOpen = true" class="text-slate-600 dark:text-[#9dabb9] p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#1A222C]">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+          </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto min-h-full">
           <router-outlet></router-outlet>
         </div>
       </main>
@@ -133,6 +155,7 @@ import { Router, RouterModule } from '@angular/router';
   ],
 })
 export class AdminLayoutComponent implements OnInit {
+  isMobileMenuOpen: boolean = false;
   userName: String = ' Admin';
   avatarUrl: String = '';
 

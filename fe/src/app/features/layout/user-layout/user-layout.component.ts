@@ -10,8 +10,13 @@ import { Router, RouterModule } from '@angular/router';
     <div
       class="font-display bg-[#f6f7f8] dark:bg-[#101922] text-slate-900 dark:text-white h-screen overflow-hidden flex"
     >
+      <!-- Backdrop for mobile -->
+      <div *ngIf="isMobileMenuOpen" (click)="isMobileMenuOpen = false" class="fixed inset-0 bg-black/50 z-30 md:hidden"></div>
+
       <aside
-        class="w-72 flex-shrink-0 border-r border-slate-200 dark:border-[#2A3441] bg-white dark:bg-[#111418] flex flex-col transition-all duration-300"
+        [class.translate-x-0]="isMobileMenuOpen"
+        [class.-translate-x-full]="!isMobileMenuOpen"
+        class="absolute md:relative z-40 h-full w-72 flex-shrink-0 border-r border-slate-200 dark:border-[#2A3441] bg-white dark:bg-[#111418] flex flex-col transition-transform duration-300 md:translate-x-0"
       >
         <div class="p-6 flex items-center gap-3">
           <div class="bg-[#137fec]/20 p-2 rounded-lg text-[#137fec]">
@@ -30,6 +35,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/dashboard"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">dashboard</span>
             <span class="text-sm font-semibold">Tổng quan</span>
@@ -39,6 +45,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/analysis"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">history</span>
             <span class="text-sm font-medium">Phân tích</span>
@@ -48,6 +55,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/history"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">history</span>
             <span class="text-sm font-medium">Lịch sử chuẩn đoán</span>
@@ -57,6 +65,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/records"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">folder_shared</span>
             <span class="text-sm font-medium">Quản lý bệnh án</span>
@@ -66,6 +75,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/chat"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">chat</span>
             <span class="text-sm font-medium">Chat Bot</span>
@@ -75,6 +85,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/statistics"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">insights</span>
             <span class="text-sm font-medium">Thống kê</span>
@@ -86,6 +97,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/settings"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">settings</span>
             <span class="text-sm font-medium">Cài đặt</span>
@@ -95,6 +107,7 @@ import { Router, RouterModule } from '@angular/router';
             routerLink="/user/reports"
             routerLinkActive="bg-[#137fec] text-white shadow-lg shadow-[#137fec]/20"
             class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 dark:text-[#9dabb9] hover:bg-slate-100 dark:hover:bg-[#1A222C] transition-colors"
+            (click)="isMobileMenuOpen = false"
           >
             <span class="material-symbols-outlined">description</span>
             <span class="text-sm font-medium">Xuất báo cáo</span>
@@ -126,6 +139,19 @@ import { Router, RouterModule } from '@angular/router';
       </aside>
 
       <main class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+        <!-- Mobile Header -->
+        <header class="md:hidden flex items-center justify-between p-4 bg-white dark:bg-[#111418] border-b border-slate-200 dark:border-[#2A3441] z-20 sticky top-0">
+          <div class="flex items-center gap-3">
+            <div class="bg-[#137fec]/20 p-2 rounded-lg text-[#137fec]">
+              <span class="material-symbols-outlined text-2xl">medical_services</span>
+            </div>
+            <h1 class="text-lg font-bold leading-tight">MedAI X-Ray</h1>
+          </div>
+          <button (click)="isMobileMenuOpen = true" class="text-slate-600 dark:text-[#9dabb9] p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#1A222C]">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+          </button>
+        </header>
+
         <div class="flex-1 overflow-y-auto">
           <router-outlet></router-outlet>
         </div>
@@ -145,6 +171,7 @@ import { Router, RouterModule } from '@angular/router';
   ],
 })
 export class UserLayoutComponent implements OnInit {
+  isMobileMenuOpen: boolean = false;
   userName: String = ' Bác sĩ';
 
   avatarUrl: String = '';
